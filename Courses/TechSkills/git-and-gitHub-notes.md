@@ -1,3 +1,4 @@
+
 Hola Noa, este es el apunte que estoy realizando, ire dandole la estructura y la información, a lo largo del documento te dejare indicaciones para que puedas mejorar el trabajo o darle el formato que te pido y sabras donde estaran las intrucciones porque te lo dejare indicado así: <Noa>Instrucciones</Noa>
 
 <Noa> Estas son las primeras instrucciones, quiero que del siguiente apunte hagas lo siguiente:
@@ -21,6 +22,83 @@ https://education.github.com/git-cheat-sheet-education.pdf
 
 by ssail
 ---
+
+- [Apuntes Git y GitHub](#apuntes-git-y-github)
+  - [**Git**](#git)
+  - [Setup \& INIT](#setup--init)
+    - [git init](#git-init)
+    - [git clone \[url\]](#git-clone-url)
+  - [Checking Configuration](#checking-configuration)
+  - [Setup](#setup)
+    - [git config](#git-config)
+    - [Editor](#editor)
+  - [¿Cómo se crean y agregan archivos a Git?](#cómo-se-crean-y-agregan-archivos-a-git)
+  - [Diagrama de secuencia](#diagrama-de-secuencia)
+  - [📍 STAGE \& SNAPSHOT](#-stage--snapshot)
+  - [🌿 BRANCH \& MERGE](#-branch--merge)
+  - [🔄 SHARE \& UPDATE](#-share--update)
+  - [📂 TRACKING PATH CHANGES](#-tracking-path-changes)
+  - [🗂️ TEMPORARY COMMITS (Stash)](#️-temporary-commits-stash)
+  - [✍️ REWRITE HISTORY](#️-rewrite-history)
+  - [🔎 INSPECT \& COMPARE](#-inspect--compare)
+  - [🚫 IGNORING PATTERNS](#-ignoring-patterns)
+  - [Guarda un archivo llamado `.gitignore` en tu proyecto para especificar qué archivos o carpetas deben ignorarse.](#guarda-un-archivo-llamado-gitignore-en-tu-proyecto-para-especificar-qué-archivos-o-carpetas-deben-ignorarse)
+  - [Ramas](#ramas)
+    - [Rama Principal (Main o Master)](#rama-principal-main-o-master)
+  - [Solución de conflictos de fusión](#solución-de-conflictos-de-fusión)
+  - [Navegación de Historial y Corrección de errores](#navegación-de-historial-y-corrección-de-errores)
+    - [git revert](#git-revert)
+    - [git reset](#git-reset)
+  - [Git checkout para gestion de verisiones y Revición.](#git-checkout-para-gestion-de-verisiones-y-revición)
+    - [Regresar a rama principal](#regresar-a-rama-principal)
+    - [Version alterna a partir de un commit](#version-alterna-a-partir-de-un-commit)
+  - [Tags o Etiquetas](#tags-o-etiquetas)
+    - [git tag](#git-tag)
+      - [Asignando etiquetas](#asignando-etiquetas)
+      - [Manipulando etiquetas](#manipulando-etiquetas)
+  - [Configuración deDDH en GitHub](#configuración-deddh-en-github)
+  - [Uso de Forks y Estrella en Repositorios de GitHub](#uso-de-forks-y-estrella-en-repositorios-de-github)
+  - [Uso de git pull, git push y git fetch en repositoios de GitHub](#uso-de-git-pull-git-push-y-git-fetch-en-repositoios-de-github)
+    - [¿Cómo sincronizar tus repositorios con git pull, git push y git fetch?](#cómo-sincronizar-tus-repositorios-con-git-pull-git-push-y-git-fetch)
+    - [¿Cómo usar git pull y git push para mantener tus repositorios sincronizados?](#cómo-usar-git-pull-y-git-push-para-mantener-tus-repositorios-sincronizados)
+    - [¿Qué es y cómo utilizar git fetch?](#qué-es-y-cómo-utilizar-git-fetch)
+    - [¿Cómo elegir entre git pull y git fetch?](#cómo-elegir-entre-git-pull-y-git-fetch)
+  - [Creación de Plantillas de Issues en GitHub](#creación-de-plantillas-de-issues-en-github)
+    - [¿Qué es un Issue en GitHub?](#qué-es-un-issue-en-github)
+    - [¿Cómo crear un nuevo Issue?](#cómo-crear-un-nuevo-issue)
+    - [¿Cómo crear una plantilla de Issues?](#cómo-crear-una-plantilla-de-issues)
+    - [¿Cómo sincronizar los cambios en GitHub?](#cómo-sincronizar-los-cambios-en-github)
+    - [¿Qué ventajas tiene una plantilla de Issues?](#qué-ventajas-tiene-una-plantilla-de-issues)
+    - [¿Cómo personalizar las plantillas de Issues para casos específicos?](#cómo-personalizar-las-plantillas-de-issues-para-casos-específicos)
+  - [Uso de Pull Request en GitHub para colaboración efectiva](#uso-de-pull-request-en-github-para-colaboración-efectiva)
+    - [¿Por qué evitar cambios directos en la rama principal?](#por-qué-evitar-cambios-directos-en-la-rama-principal)
+    - [¿Cómo funciona un Pull Request?](#cómo-funciona-un-pull-request)
+    - [¿Qué papel juega la revisión de código?](#qué-papel-juega-la-revisión-de-código)
+    - [¿Cómo se fusiona un Pull Request?](#cómo-se-fusiona-un-pull-request)
+    - [¿Cómo puedo practicar Pull Requests de forma efectiva?](#cómo-puedo-practicar-pull-requests-de-forma-efectiva)
+    - [Pasos que seguí](#pasos-que-seguí)
+  - [Gestión de Proyectos con GitHub Projects: Planificación Colaborativa](#gestión-de-proyectos-con-github-projects-planificación-colaborativa)
+    - [Introducción a GitHub Projects 🚀](#introducción-a-github-projects-)
+    - [🎯 ¿Por qué usar GitHub Projects?](#-por-qué-usar-github-projects)
+    - [1️⃣ Cómo Crear un GitHub Project](#1️⃣-cómo-crear-un-github-project)
+  - [Automatización de flujos de trabajo en GitHub Projects](#automatización-de-flujos-de-trabajo-en-github-projects)
+    - [¿Cómo vincular y personalizar un proyecto en GitHub?](#cómo-vincular-y-personalizar-un-proyecto-en-github)
+    - [¿Cómo gestionar y actualizar actividades dentro del proyecto?](#cómo-gestionar-y-actualizar-actividades-dentro-del-proyecto)
+    - [¿Cómo automatizar los cambios de estado en actividades?](#cómo-automatizar-los-cambios-de-estado-en-actividades)
+    - [¿Cómo crear y enlazar un issue desde una actividad?](#cómo-crear-y-enlazar-un-issue-desde-una-actividad)
+    - [¿Qué ventajas ofrece el flujo automatizado en GitHub?](#qué-ventajas-ofrece-el-flujo-automatizado-en-github)
+  - [Recursos ecenciales de MarkDown para Documentación efectiva](#recursos-ecenciales-de-markdown-para-documentación-efectiva)
+    - [Herramientas útiles para documentación](#herramientas-útiles-para-documentación)
+    - [Extenciones para Visual Estudio Code](#extenciones-para-visual-estudio-code)
+  - [Creación de una Portada de Perfil en GitHub con Markdown](#creación-de-una-portada-de-perfil-en-github-con-markdown)
+    - [Herramientas de apoyo](#herramientas-de-apoyo)
+    - [¿Cómo iniciar el repositorio especial en GitHub?](#cómo-iniciar-el-repositorio-especial-en-github)
+    - [¿Cómo personalizar el README con Markdown?](#cómo-personalizar-el-readme-con-markdown)
+    - [¿Cómo previsualizar y ajustar el archivo en Visual Studio Code?](#cómo-previsualizar-y-ajustar-el-archivo-en-visual-studio-code)
+    - [¿Cómo añadir y ajustar badges en el perfil de GitHub?](#cómo-añadir-y-ajustar-badges-en-el-perfil-de-github)
+    - [¿Qué estrategias aplicar para mejorar la portada en GitHub?](#qué-estrategias-aplicar-para-mejorar-la-portada-en-github)
+
+
 
 # Apuntes Git y GitHub
 **Git**
@@ -825,4 +903,24 @@ Markdown facilita la creación de secciones y elementos visuales. Puedes agregar
 
 * Explora y adapta: La práctica es clave; revisa diferentes perfiles para encontrar ideas y técnicas que puedas adaptar.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+---
+---
+---
+---
+---
+---
 
