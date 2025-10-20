@@ -1,441 +1,865 @@
 
-# **Sección II: GitHub — Colaboración y Herramientas en la Nube.**
+# GitHub Essenttials — Colaboración y Flujo en la Nube.
 
-## Configuración de SSH en GitHub
+[![Static Badge](https://img.shields.io/badge/By-Ssail-blueviolet?logo=github)](https://github.com/Ssail-1 "GitHub de Ssail-1")
+[![Static Badge](https://img.shields.io/badge/Guided%20by-Noa%20💗-d16ba5?logo=githubcopilot)](https://chat.openai.com "Asistente Noa")
+[![Static Badge](https://img.shields.io/badge/PlatziNotes%20Project-2025-00bcd4?logo=markdown)](https://github.com/Ssail-1/PlatziNotes "Proyecto principal")
 
-<Noa>Aqui me gustaria que expliques porque es importante, en que casos se usa comunmente y lo importante que creas y si el proceso no es tan bueno mejoralo, tambien explica lo que significan los parametros, o que significa cada comando, es algo que ya te habia dicho al inicio pero por si acaso. </Noa>
 
-Para configurar SSH en GitHub, sigue estos pasos:
+## ⚙️ Nota sobre prácticas y configuración
 
-1. Genera una clave SSH:
+> [!NOTE]  
+> 🔄 Para practicar **forks, pull requests y colaboración**, utilicé dos cuentas:  
+> `Ssail-1` (perfil principal y portafolio) y `decktSsail` (cuenta de pruebas).  
+> 
+> Esto me permitió simular un entorno profesional y reforzar el aprendizaje colaborativo real.
 
-    - Abre tu terminal.
-    - Ejecuta: ssh-keygen -t ed25519 -C "<tu_correo@example.com>" y sigue las instrucciones para crear la clave.
+---
+---
 
-2. Inicia el agente SSH:
+## Índice
 
-    - Ejecuta: eval "$(ssh-agent -s)".
-    - Luego, agrega tu clave privada: ssh-add ~/.ssh/id_ed25519.
+📘 [Volver al README del Curso](./README.md)  
+📙 [Ir a Notas de Git](./git-essentials-notes.md)
 
-3. |Copia la clave pública:
+- [GitHub Essenttials — Colaboración y Flujo en la Nube.](#github-essenttials--colaboración-y-flujo-en-la-nube)
+  - [⚙️ Nota sobre prácticas y configuración](#️-nota-sobre-prácticas-y-configuración)
+  - [Índice](#índice)
+  - [🔐 Configuración de SSH en GitHub (una o varias cuentas)](#-configuración-de-ssh-en-github-una-o-varias-cuentas)
+    - [⚙️ 1️⃣ Generar tus llaves SSH](#️-1️⃣-generar-tus-llaves-ssh)
+    - [🧠 2️⃣ Iniciar el agente SSH](#-2️⃣-iniciar-el-agente-ssh)
+    - [🧩 3️⃣ Crear el archivo de configuración `config`](#-3️⃣-crear-el-archivo-de-configuración-config)
+    - [🔑 4️⃣ Copiar la llave pública](#-4️⃣-copiar-la-llave-pública)
+    - [🧪 5️⃣ Probar la conexión](#-5️⃣-probar-la-conexión)
+    - [💡 Recomendaciones finales](#-recomendaciones-finales)
+    - [🪄 Resultado visual](#-resultado-visual)
+  - [🤝 Forks, Pull Requests y Colaboración en GitHub](#-forks-pull-requests-y-colaboración-en-github)
+    - [🍴 1️⃣ Fork: copiar un repositorio para colaborar](#-1️⃣-fork-copiar-un-repositorio-para-colaborar)
+      - [🧩 Cómo crear un fork:](#-cómo-crear-un-fork)
+    - [🧭 2️⃣ Clonar tu fork localmente](#-2️⃣-clonar-tu-fork-localmente)
+    - [🔗 3️⃣ Conectar el repositorio original como *upstream*](#-3️⃣-conectar-el-repositorio-original-como-upstream)
+    - [🔄 4️⃣ Mantener sincronizado tu fork](#-4️⃣-mantener-sincronizado-tu-fork)
+    - [🧠 5️⃣ Crear una rama de trabajo](#-5️⃣-crear-una-rama-de-trabajo)
+    - [🔃 6️⃣ Crear un Pull Request (PR)](#-6️⃣-crear-un-pull-request-pr)
+    - [🧩 7️⃣ Revisión de código (*Code Review*)](#-7️⃣-revisión-de-código-code-review)
+    - [⚙️ 8️⃣ Fusionar (Merge) el PR](#️-8️⃣-fusionar-merge-el-pr)
+    - [🧹 9️⃣ Limpiar ramas](#-9️⃣-limpiar-ramas)
+      - [En GitHub:](#en-github)
+      - [En local:](#en-local)
+    - [🧭 Flujo visual completo](#-flujo-visual-completo)
+    - [💡 Buenas prácticas](#-buenas-prácticas)
+  - [🧩 Issues y GitHub Projects — Planificación Colaborativa](#-issues-y-github-projects--planificación-colaborativa)
+    - [🧠 1️⃣ Issues — seguimiento de tareas o problemas](#-1️⃣-issues--seguimiento-de-tareas-o-problemas)
+      - [🧩 Crear un Issue](#-crear-un-issue)
+    - [⚙️ 2️⃣ Vincular un Issue con un Pull Request](#️-2️⃣-vincular-un-issue-con-un-pull-request)
+    - [🧩 3️⃣ Crear plantillas de Issues](#-3️⃣-crear-plantillas-de-issues)
+      - [📁 Estructura](#-estructura)
+    - [🗂️ 4️⃣ Projects — planificación visual de trabajo](#️-4️⃣-projects--planificación-visual-de-trabajo)
+      - [🧭 Crear un Project](#-crear-un-project)
+      - [🧩 Agregar tareas al Project](#-agregar-tareas-al-project)
+    - [⚡ 5️⃣ Automatizaciones](#-5️⃣-automatizaciones)
+    - [🧩 6️⃣ Flujo visual completo](#-6️⃣-flujo-visual-completo)
+    - [💡 Buenas prácticas](#-buenas-prácticas-1)
+  - [🧰 Recursos esenciales de Markdown para documentación efectiva](#-recursos-esenciales-de-markdown-para-documentación-efectiva)
+    - [🛠️ Herramientas útiles para documentación](#️-herramientas-útiles-para-documentación)
+    - [💻 Extensiones para Visual Studio Code](#-extensiones-para-visual-studio-code)
+  - [🧩 Creación de una Portada de Perfil en GitHub con Markdown](#-creación-de-una-portada-de-perfil-en-github-con-markdown)
+    - [⚙️ ¿Cómo crear el repositorio especial?](#️-cómo-crear-el-repositorio-especial)
+    - [🎨 Personalizar el README](#-personalizar-el-readme)
+    - [🧠 Herramientas de apoyo](#-herramientas-de-apoyo)
+    - [🌟 Buenas prácticas para tu portada](#-buenas-prácticas-para-tu-portada)
+    - [Ejemplo de estructura visual](#ejemplo-de-estructura-visual)
+  - [9. Uso de wikis](#9-uso-de-wikis)
+  - [10. Uso de GitHub Gist](#10-uso-de-github-gist)
 
-    - Usa cat ~/.ssh/id_ed25519.pub para visualizarla y cópiala.
+---
+---
 
-4. Añade la clave a GitHub:
+## 🔐 Configuración de SSH en GitHub (una o varias cuentas)
 
-    - Ve a GitHub, en "Settings" > "SSH and GPG keys", y selecciona "New SSH key". Pega tu clave pública.
+![Static Badge](https://img.shields.io/badge/git-ssh-blue?logo=github)
+![Static Badge](https://img.shields.io/badge/multi--account-setup-green?logo=linux)
+![Static Badge](https://img.shields.io/badge/secure--connection-yellow?logo=lock)
 
-5. Prueba la conexión:
+GitHub permite conectarte a tus repositorios sin contraseñas mediante **SSH (Secure Shell)**.
+Esto es especialmente útil si manejas varias cuentas (por ejemplo, una principal y otra de pruebas o colaboraciones).
 
-    - Ejecuta: ssh -T <git@github.com>. Deberías ver un mensaje de éxito.
+---
 
-Con esto, habrás configurado SSH para GitHub de forma segura y eficiente.
+### ⚙️ 1️⃣ Generar tus llaves SSH
 
-Usar SSH para interactuar con GitHub es una excelente forma de aumentar la seguridad y mejorar la comodidad en el manejo de repositorios. A continuación, te explicamos el paso a paso para generar y configurar tus llaves SSH en distintos sistemas operativos y cómo integrarlas en tu perfil de GitHub para mejorar la experiencia de clonación y autenticación.
+Abre la terminal y ejecuta:
 
-¿Por qué es mejor usar SSH en lugar de HTTPS para GitHub?
-Seguridad adicional: SSH permite autenticar la computadora específica que accede a los repositorios sin necesidad de ingresar una contraseña cada vez.
-Comodidad: Evita la necesidad de escribir tu contraseña en cada operación con GitHub, agilizando el flujo de trabajo.
-¿Cómo generar una llave SSH en Windows y Linux?
-Instalar WSL si estás en Windows (opcional si usas Linux nativo).
-Verificar que no tienes llaves previas: Ve al menú de “Code” en GitHub y verifica que la opción de SSH no tenga llaves configuradas.
-Generar la llave SSH: En la terminal, usa el comando:
-ssh-keygen -t ed25519 -C "<tu_correo@example.com>"
--t ed25519 establece el nivel de encriptación.
--C añade un comentario con tu correo, útil para identificar la llave en GitHub.
-Guardar y proteger la llave:
-Usa el nombre por defecto y añade una contraseña segura.
-La llave pública se guarda en el directorio .ssh, generalmente nombrada id_ed25519.pub.
-Configurar el agente SSH: Activa el agente de SSH y añade la llave privada:
+```bash
+ssh-keygen -t ed25519 -C "tu_correo@example.com"
+```
+
+💬 Explicación rápida:
+
+- `-t ed25519` → define el tipo de cifrado moderno y más seguro.
+- `-C` → añade un comentario (normalmente tu correo, para identificar la llave).
+
+Si usas varias cuentas, crea una llave para cada una cambiando el nombre del archivo al final:
+
+```bash
+ssh-keygen -t ed25519 -C "correo_principal@example.com" -f ~/.ssh/id_ed25519_ssail
+ssh-keygen -t ed25519 -C "correo_secundario@example.com" -f ~/.ssh/id_ed25519_deckt
+```
+
+💡 Esto generará dos pares de archivos:
+
+```
+id_ed25519_ssail       ← llave privada
+id_ed25519_ssail.pub   ← llave pública
+id_ed25519_deckt       ← llave privada secundaria
+id_ed25519_deckt.pub   ← llave pública secundaria
+```
+
+---
+
+### 🧠 2️⃣ Iniciar el agente SSH
+
+El agente mantiene las llaves activas en memoria para no tener que escribir la contraseña en cada uso:
+
+```bash
 eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed25519
-¿Cómo añadir la llave SSH a GitHub?
-Abrir el archivo de la llave pública (id_ed25519.pub) y copia el contenido.
-En GitHub, ve a Settings > SSH and GPG keys > New SSH key y pega la llave.
-Nombra la llave de acuerdo a la computadora en la que estás configurándola.
-¿Qué pasos adicionales seguir en Mac?
-Crear el archivo de configuración SSH: Abre o crea el archivo config dentro del directorio .ssh.
-
-Agregar parámetros específicos de Mac: Añade la configuración para integrar SSH con el sistema Keychain:
-
-Host github.com
-   AddKeysToAgent yes
-   UseKeychain yes
-   IdentityFile ~/.ssh/id_ed25519
-Añadir la llave al agente SSH con Keychain: Usa el comando:
-
-ssh-add --apple-use-keychain ~/.ssh/id_ed25519
-¿Cómo verificar la conexión con GitHub?
-Comprobar autenticación: En la terminal, ejecuta el comando:
-ssh -T <git@github.com>
-Escribe “yes” para confirmar la conexión.
-Aparecerá un mensaje de GitHub que confirma la autenticidad.
-¿Cómo clonar un repositorio usando SSH?
-En GitHub, selecciona el repositorio deseado, elige la opción de clonación por SSH y copia la URL.
-En la terminal, ejecuta:
-git clone <git@github.com>:usuario/repositorio.git
-Esto clona el repositorio sin solicitar contraseña, aprovechando la autenticación SSH.
-
-## Uso de Forks y Estrella en Repositorios de GitHub
-
-<Noa>Este tema no es tan complejo, pegue el apunte del curso, lo puedes resumir o poner solo las cosas importantes</Noa>
-
-Entender el uso de forks y estrellas en GitHub optimiza la gestión de proyectos y recursos al trabajar en esta plataforma. Aquí exploraremos cómo funcionan estos elementos y cómo pueden ayudarte a organizar tus repositorios en función de tus necesidades.
-
-¿Qué es un fork y cómo se utiliza?
-Un fork en GitHub es una copia de un repositorio alojado en la cuenta de otra persona y que puedes transferir a tu propia cuenta. Este proceso crea una réplica del repositorio en su estado actual, sin reflejar futuros cambios del original a menos que se sincronice manualmente. Esto permite:
-
-Trabajar de manera independiente en un proyecto sin afectar el repositorio original.
-Personalizar el contenido según tus necesidades sin modificar el repositorio fuente.
-Crear una base para hacer contribuciones posteriores al repositorio original.
-Para crear un fork, debes abrir el repositorio, seleccionar el botón de Fork y seguir los pasos para copiarlo en tu cuenta. Así, GitHub duplicará el repositorio, manteniendo el nombre y descripción del original. Puedes optar por copiar solo la rama principal (main) o todo el proyecto. Luego, desde tu cuenta, podrás modificar el contenido sin interferir con el repositorio original.
-
-¿Qué beneficios aporta usar estrellas en GitHub?
-Las estrellas en GitHub funcionan como un sistema de marcado para resaltar los repositorios que deseas tener a mano como referencia o favoritos. Son útiles para:
-
-Crear un índice de repositorios de referencia o inspiración.
-Acceder rápidamente a recursos clave desde tu perfil.
-Seguir el desarrollo de proyectos importantes para tus intereses.
-Al seleccionar la estrella en un repositorio, ésta se ilumina para indicar que has marcado este recurso. Puedes acceder a todos tus repositorios marcados desde la sección de “tus estrellas” en tu perfil. Aquí se listan los proyectos que has destacado, ayudándote a centralizar tus fuentes de consulta.
-
-¿Cómo clonar un repositorio forkeado?
-Después de realizar un fork, puedes clonar este repositorio a tu entorno local para trabajar de forma directa en tu equipo. Para hacerlo:
-
-Ve a tu repositorio forkeado.
-Selecciona el botón Code y copia la URL del proyecto en formato SSH.
-Abre la terminal y usa el comando git clone .
-De esta manera, tendrás una versión local del repositorio en la que podrás modificar y gestionar el código. Esta técnica de fork y clonación es útil para personalizar proyectos o experimentar sin afectar el original, ofreciendo flexibilidad para hacer cambios sin alterar el repositorio fuente.
-
-¿Por qué usar forks en lugar de clonar directamente el repositorio original?
-Hacer un fork en lugar de una clonación directa del repositorio original permite que trabajes de manera independiente. Puedes hacer ajustes sin el riesgo de cambiar el repositorio base, especialmente útil cuando el original es de terceros o si planeas realizar cambios extensivos. Además, el fork es una base ideal para hacer contribuciones futuras, ya que se puede sincronizar y enviar cambios al proyecto original a través de un proceso estructurado.
-
-## Uso de git pull, git push y git fetch en repositoios de GitHub
-
-### ¿Cómo sincronizar tus repositorios con git pull, git push y git fetch?
-
-La gestión de repositorios es una habilidad esencial en el desarrollo de software moderno. Git y GitHub permiten a los desarrolladores colaborar y sincronizar cambios de manera eficiente. Aquí te explicaremos cómo los comandos git pull, git push y git fetch juegan un papel crucial en este proceso, ayudándote a entender cuándo y cómo utilizarlos para mantener tus repositorios actualizados.
-
-### ¿Cómo usar git pull y git push para mantener tus repositorios sincronizados?
-
-El comando git pull se utiliza para actualizar tu repositorio local con los cambios que se han producido en la nube, específicamente en GitHub. Esta acción es esencial cuando deseas asegurarte de que tu entorno local refleje las últimas modificaciones realizadas en el repositorio compartido.
-
-Por otro lado, git push tiene la función opuesta: permite subir tus cambios locales al repositorio en la nube. Esto es fundamental para colaborar con otros desarrolladores, garantizando que todos los cambios se integren en el proyecto general.
-
-Script de ejemplo para git pull y git push
-
-```
-# Para verificar la rama activa y actualizar el repositorio local
-
-$ git branch                # Verifica la rama activa
-$ git pull origin main      # Jala los últimos cambios de la rama main en GitHub
-
-# Para subir cambios desde el repositorio local a la nube
-$ git add .                 # Prepara los archivos para el commit
-$ git commit -m "Descripción del cambio" # Realiza el commit
-$ git push origin main      # Sube los cambios a GitHub
 ```
 
-### ¿Qué es y cómo utilizar git fetch?
-
-El comando git fetch es útil cuando deseas descargar los cambios sin aplicarlos inmediatamente. Difiere de git pull, ya que te permite evaluar primero los cambios antes de fusionarlos con tu rama local. Este enfoque resulta valioso cuando se espera una revisión antes de integrar los cambios en el entorno local.
-
-Ejemplo práctico de git fetch
+Deberías ver un mensaje similar a:
 
 ```
-# Descargar cambios sin aplicarlos de inmediato
-$ git fetch origin                # Jala los cambios de la rama origen
-
-# Comparar y evaluar diferencias entre ramas
-$ git log main..origin/main       # Compara las diferencias entre la rama local y la remota
-
-# Una vez evaluados, fusionar cambios en la rama local
-$ git merge origin/main           # Fusiona los cambios evaluados
+Agent pid 1234
 ```
 
-### ¿Cómo elegir entre git pull y git fetch?
+Agrega tus llaves al agente:
 
-git pull: Rápido y directo, ideal cuando se confía en los cambios remotos y se necesita una actualización inmediata de la rama local.
-git fetch: Más cauteloso, ofrece una etapa de evaluación antes de integrar los cambios, evitando sincronizaciones no deseadas.
-Elige el comando que mejor se adapte a tu situación y flujo de trabajo. Recuerda siempre sincronizar tus cambios entre local y remoto para mantener la integridad del proyecto y facilitar la colaboración.
+```bash
+ssh-add ~/.ssh/id_ed25519_ssail
+ssh-add ~/.ssh/id_ed25519_deckt
+```
 
-Con estos comandos como parte de tu arsenal, tendrás la habilidad de mantener tus proyectos bien organizados y listos para la colaboración. Sigue explorando y practicando en diferentes escenarios para reforzar estas habilidades esenciales en el manejo de Git y GitHub. ¡Adelante, y sigue aprendiendo!
+✅ Puedes comprobar que quedaron cargadas con:
 
-<Noa>El profe uso fit [push -u origin main] pero no se porque puso -u </Noa>
+```bash
+ssh-add -l
+```
 
-## Creación de Plantillas de Issues en GitHub
+---
 
-Usar los Issues de GitHub permite gestionar y documentar problemas en un repositorio, desde errores simples en la redacción hasta defectos complejos en la funcionalidad. Con una interfaz intuitiva, permite que cualquier usuario señale y describa aspectos mejorables, y con plantillas de Issues, mejora la claridad y colaboración en el proceso.
+### 🧩 3️⃣ Crear el archivo de configuración `config`
 
-### ¿Qué es un Issue en GitHub?
+Para alternar entre varias cuentas sin confusión, crea el archivo `~/.ssh/config`:
 
-Un Issue es una forma de señalar problemas o sugerencias dentro de un repositorio. Puede ser usado para:
+```bash
+nano ~/.ssh/config
+```
 
-Notificar errores en la documentación, como faltas de ortografía.
-Reportar problemas en el funcionamiento esperado del código.
-Informar mejoras o cambios necesarios.
-Los Issues permiten una comunicación bidireccional entre los colaboradores y el creador del repositorio, lo que facilita la resolución de problemas.
+Y agrega este contenido:
 
-### ¿Cómo crear un nuevo Issue?
+```bash
+Host github.com-ssail
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519_ssail
 
-1. En el repositorio de GitHub, selecciona la pestaña Issues.
-2. Haz clic en New Issue y describe el problema en dos campos principales:
-    - Título: Una breve descripción.
-    - Descripción: Detalles del problema, pasos para reproducirlo, etc.  
+Host github.com-deckt
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519_deckt
+```
 
-Es posible agregar elementos adicionales, como asignar el Issue a otra persona o etiquetarlo.
+💬 **Explicación:**
 
-### ¿Cómo crear una plantilla de Issues?
+- `Host` → alias con el que Git reconocerá la cuenta.
+- `HostName` → el dominio real de GitHub.
+- `User` → siempre “git”.
+- `IdentityFile` → la ruta al archivo de la llave privada correspondiente.
 
-Para facilitar el proceso a otros colaboradores, es útil crear plantillas de Issues. Para hacerlo:
+Ahora podrás clonar repos de cada cuenta según el alias:
 
-1. Desde el repositorio, abre Visual Studio Code con el comando code ..
-2. Crea una carpeta llamada .github y dentro otra carpeta llamada ISSUE_TEMPLATE.
-3. Dentro de ISSUE_TEMPLATE, crea un archivo Markdown (por ejemplo, bug_report.md).
-4. Copia la estructura de la plantilla, que usualmente incluye secciones como descripción, pasos para reproducir el error y detalles adicionales.
+```bash
+git clone git@github.com-ssail:Ssail-1/PlatziNotes.git
+git clone git@github.com-deckt:decktSsail/PlatziNotes.git
+```
 
-Con esta plantilla, los colaboradores tendrán un formato estándar para reportar problemas, lo que ayuda a una mejor gestión y resolución.
+---
 
-### ¿Cómo sincronizar los cambios en GitHub?
+### 🔑 4️⃣ Copiar la llave pública
 
-1. Una vez creada la plantilla, verifica que los archivos cambiados estén marcados en verde en Visual Studio Code.
-2. Realiza un commit (por ejemplo, “Bug Report agregado”).
-3. Sincroniza con el repositorio de GitHub mediante el botón de flecha hacia arriba (push).
-4. En GitHub, verifica que la plantilla esté disponible en la sección de Issues.
+Visualiza el contenido de tu llave **.pub** y cópiala:
 
-### ¿Qué ventajas tiene una plantilla de Issues?
+```bash
+cat ~/.ssh/id_ed25519_ssail.pub
+```
 
-Las plantillas simplifican el proceso de documentación de problemas y mejoran la comunicación al estandarizar la información que se solicita a los colaboradores. Esto ayuda a identificar los problemas de forma precisa y rápida.
+Luego en GitHub:
 
-### ¿Cómo personalizar las plantillas de Issues para casos específicos?
+> **Settings → SSH and GPG Keys → New SSH key**
 
-Además de la plantilla básica para bugs, puedes crear plantillas personalizadas como:
+Pega el contenido, asigna un nombre descriptivo (ej. “VM principal” o “Secundaria Deckt”).
 
-- Document Report: Para señalar errores en la documentación.
-- Mejores prácticas: Para sugerir mejoras en la estructura del código.
+Repite el proceso para cada cuenta.
 
-Estas plantillas permiten a los colaboradores elegir el tipo de Issue que mejor se adapta al problema y agilizan la gestión del repositorio.
+---
 
-## Uso de Pull Request en GitHub para colaboración efectiva
+### 🧪 5️⃣ Probar la conexión
 
-Colaborar en GitHub requiere evitar modificar directamente la rama principal, lo que podría causar conflictos con el trabajo de otros compañeros. En su lugar, trabajar en ramas individuales y fusionarlas mediante Pull Requests (PR) es clave para un flujo de trabajo colaborativo y seguro.
+Ejecuta una prueba para cada configuración:
 
-### ¿Por qué evitar cambios directos en la rama principal?
+```bash
+ssh -T git@github.com-ssail
+ssh -T git@github.com-deckt
+```
 
-Realizar cambios directamente en la rama principal (main) puede sobrescribir el trabajo no sincronizado de otros colaboradores. Este error común se evita al:
+Deberías recibir una respuesta como:
 
-- Crear una rama separada para cada contribuyente.
-- Fusionar cambios mediante una revisión en el Pull Request, antes de unirlos a la rama principal.
+```
+Hi Ssail-1! You've successfully authenticated, but GitHub does not provide shell access.
+```
 
-### ¿Cómo funciona un Pull Request?
+Eso confirma que la conexión SSH está activa y segura.
 
-1. Crear una Rama Nueva: Al iniciar cambios, crea una rama local específica. Por ejemplo, developer01.
-2. Subir la Rama a GitHub: Usa git push -u origin  para subir tu rama.
-3. Notificar al Equipo: Al crear un Pull Request, notificas al equipo sobre tus cambios, lo que permite una revisión colaborativa (Code Review).
+---
 
-### ¿Qué papel juega la revisión de código?
+### 💡 Recomendaciones finales
 
-El Code Review en los Pull Requests permite:
+✅ Usa **una sola llave por dispositivo** (dos solo si manejas varias cuentas).
+✅ **Nunca compartas tus llaves privadas.**
+✅ Si cambias de máquina o reinstalas tu SO, vuelve a agregar las llaves en GitHub.
+✅ Respáldalas en un lugar seguro (ej. un USB cifrado).
+✅ Usa alias consistentes en el archivo `config` para evitar confusiones.
 
-- Evaluar y comentar los cambios antes de fusionarlos.
-- Aumentar la calidad y la visibilidad de los cambios propuestos.
+---
 
-Aunque puede ser intimidante al principio, esta práctica asegura transparencia y mejora continua en el equipo.
+### 🪄 Resultado visual
 
-### ¿Cómo se fusiona un Pull Request?
+```mermaid
+flowchart LR
+  A[Máquina local VM/WSL] --> B((Agente SSH))
+  B --> C[Cuenta 1 - Ssail-1]
+  B --> D[Cuenta 2 - decktSsail]
+  C -->|git push / pull| E[GitHub Repositorio Original]
+  D -->|fork / PR| F[GitHub Fork Secundario]
+```
 
-1. Comparación y Revisión: Una vez que el equipo revisa los cambios y los aprueba, GitHub facilita la fusión con la rama principal.
-2. Resolver Conflictos: GitHub verifica automáticamente conflictos potenciales, mostrando una marca verde si está listo para fusionarse sin problemas.
-3. Eliminar la Rama: Tras la fusión, se elimina la rama para mantener el repositorio ordenado y listo para nuevas tareas.
+---
 
-### ¿Cómo puedo practicar Pull Requests de forma efectiva?
+✅ Con esto ya tendrás **autenticación SSH profesional**, ideal para manejar varios repositorios y cuentas en el mismo entorno.
+Este es el **método más seguro y flexible** para trabajar en GitHub desde terminal.
 
-Para mejorar, colabora con un amigo o colega, practicando la creación y revisión de Pull Requests. Esta interacción entre ramas te ayudará a familiarizarte y a fluir con confianza en el proceso de colaboración en GitHub.
+---
 
-### Pasos que seguí
+<p align="center">
+  <a href="#índice">🔝 <b>Volver al Índice</b> 🔝</a>
+</p>
 
-1. Se crea una nueva rama y se hacen los cambios
-2. Se hace un `git add .` y un `git commit -m "mensaje"` o bien un `git commit -am "mensaje"`
-3. Subimos los cambios en la nueva rama `git push --set-upstream origin nameBranch` o `git push -u origin nameBranch`
-4. En GitHub hacemos un Compare & pull request
-5. Esperamos el code review por parte de los colaboradores
-6. Una vez cumplido el objetivo de la rama, podemos eliminar esta.
-
-## Gestión de Proyectos con GitHub Projects: Planificación Colaborativa
-
-### Introducción a GitHub Projects 🚀
-
-GitHub Projects es una herramienta integrada en GitHub que permite gestionar proyectos de forma visual y organizada, combinando issues, pull requests y notas en tableros personalizables.
-
-### 🎯 ¿Por qué usar GitHub Projects?
-
-✅ Facilita la planificación y seguimiento del trabajo. ✅ Se integra con Issues y Pull Requests automáticamente. ✅ Permite organizar tareas en tableros estilo Kanban o listas. ✅ Soporta automatización con GitHub Actions. ✅ Ideal para equipos y proyectos individuales.
-
-### 1️⃣ Cómo Crear un GitHub Project
-
-Sigue estos pasos para iniciar un Project en GitHub:
-
-📌 1. Acceder a GitHub Projects
-Ve al repositorio donde quieres gestionar el proyecto.
-Haz clic en la pestaña "Projects".
-Presiona "New project".
-📌 2. Elegir el Tipo de Proyecto
-Puedes elegir entre:
-
-Table (tablas personalizadas con filtros avanzados).
-Board (tablero estilo Kanban, similar a Trello).
-Elige el que mejor se adapte a tu flujo de trabajo.
-
-📌 3. Configurar el Proyecto
-Asigna un nombre y descripción.
-Agrega columnas o estados (Ej: "To Do", "In Progress", "Done").
-Agrega Issues o Pull Requests arrastrándolos al tablero.
-2️⃣ Uso Básico de GitHub Projects
-Una vez creado, puedes gestionar el trabajo de manera eficiente:
-
-📌 1. Agregar Tareas (Items)
-Puedes añadir Issues o PRs existentes al proyecto.
-También puedes crear notas personalizadas para otras tareas.
-📌 2. Organizar el Trabajo con Columnas
-To Do → Tareas pendientes.
-In Progress → Tareas en desarrollo.
-Done → Tareas completadas.
-Puedes personalizar columnas según tu flujo de trabajo.
-
-📌 3. Automatizar con GitHub Actions
-Puedes configurar automatizaciones como: ✅ Mover un Issue a "In Progress" cuando se asigne. ✅ Marcar como "Done" cuando se cierre un Pull Request.
-
-3️⃣ Ejemplo de Flujo de Trabajo con GitHub Projects
-🔹 1. Crear un Issue → Se registra una tarea o bug. 🔹 2. Mover a "In Progress" → Se asigna a un desarrollador. 🔹 3. Crear un Pull Request → Se suben los cambios. 🔹 4. Revisar el Código → Se aprueba el PR. 🔹 5. Fusionar y Cerrar el Issue → Se mueve a "Done".
-
-🚀 Resultado: Un equipo bien organizad
-
-
-
-
-
-
-
-
-
-
-
-o y un código de mejor calidad.
-
-🎯 Conclusión
-✅ GitHub Projects ayuda a organizar y visualizar tareas en un proyecto. ✅ Se integra con Issues, Pull Requests y GitHub Actions. ✅ Es una herramienta poderosa para equipos y desarrolladores individuales.
-
-## Automatización de flujos de trabajo en GitHub Projects
-
-Automatizar tareas en proyectos de software es esencial para ahorrar tiempo y mejorar la productividad. Con GitHub Projects, puedes configurar flujos de trabajo automáticos que simplifican la gestión y seguimiento de actividades, permitiendo un enfoque directo en el código.
-
-### ¿Cómo vincular y personalizar un proyecto en GitHub?
-
-1. Accede a tu repositorio en GitHub y selecciona la categoría de “Projects.”
-2. Si no tienes un proyecto vinculado, selecciona la opción  “Enlazar a un proyecto.”
-3. Edita el proyecto sin título agregando un nombre relevante, como “Mi proyecto individual,” y, opcionalmente, una descripción y un README.
-4. Guarda los cambios y regresa al repositorio para enlazar este proyecto.
-
-### ¿Cómo gestionar y actualizar actividades dentro del proyecto?
-
-- Dentro de tu proyecto vinculado, crea actividades como “Actualizar archivo HTML,” “Actualizar archivo CSS,” o “Actualizar archivo JavaScript.”
-
-- Marca el estado de cada tarea: en progreso, pendiente o completada.
-- Usa la sección “Insights” para ver un gráfico del estado de las actividades y medir la eficacia del equipo.
-
-### ¿Cómo automatizar los cambios de estado en actividades?
-
-- Entra en los flujos de trabajo (Workflows) seleccionando los tres puntos en la esquina superior de tu proyecto.
-
-- Configura las reglas, por ejemplo, para que un issue o pull request cerrado cambie automáticamente el estado de la actividad a “Hecho.”
-- Personaliza otros workflows como el cambio de estado cuando un pull request es aprobado, asegurando que la automatización se adapte a tus necesidades.
-
-### ¿Cómo crear y enlazar un issue desde una actividad?
-
-1. Selecciona una actividad como “Actualizar archivo CSS,” presiona los tres puntos y conviértela en un issue en el repositorio.
-2. Crea una nueva rama desde la sección de ramas, nómbrala de forma clara, y agrega los cambios necesarios en el archivo, por ejemplo, un nuevo archivo style.css.
-3. Guarda los cambios, crea un pull request y describe los cambios. Usa la palabra clave closes seguido del número de issue para que GitHub lo cierre automáticamente cuando se apruebe el pull request.
-
-### ¿Qué ventajas ofrece el flujo automatizado en GitHub?
-
-Con esta automatización:
-
-- El estado de las tareas se actualiza solo, sin necesidad de hacerlo manualmente.
-- Los workflows pueden expandirse para notificar por Slack, Teams o correo electrónico cada vez que un pull request se cierra, facilitando la comunicación y el seguimiento en equipo.
-- GitHub Projects, junto con estas integraciones, permite un flujo de trabajo robusto y ágil.
-
-||  ## Recursos ecenciales de MarkDown para Documentación efectiva
-||  
-||  ### Herramientas útiles para documentación
-||  
-||  [MarkDown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/)
-||  
-||  [Simple Icons](https://simpleicons.org/)
-||  
-||  [Sintaxis de escritura y formartos basicos](https://docs.github.com/es/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
-||  
-||  [Static Badge](https://docs.github.com/es/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
-||  
-||  [Documentacion de Curso que hize de MD en youtube](Aqui deberia ir la ruta para el curso de MD que hize cuando lo suba a un repositorio de GitHub)
-||  
-||  ### Extenciones para Visual Estudio Code
-||  
-||  > [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
-||  
-||  > [Markdown Preview Mermaid Suppor](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid)
-||  
-||  <!-- Aquí ya me siento bueno en markdown, así que solo pondre las herramientas que considere muy interesantes-->
-||  
-||  <Noa> Los comentarios que ponga en html <!-- comentario --> esos dejalos y este tema dejalo como esta o checa tu si quieres poner algo necesario, o ya se, ayudame poniendo los temas que necesito para aprender Mermaid, ese no lo se usar y se me hace muy interesante, en la uni hice un proyecto donde use 100% mermaid para hacer los diagramas y fuaa!, me volo la cabeza pero no tenia tiempo para detenerme a saber como funcionaba. </Noa>
-||  
-||  ## Creación de una Portada de Perfil en GitHub con Markdown
-||  
-||  Aprender a crear una portada atractiva y funcional en GitHub usando Markdown no solo mejora la presentación profesional de un perfil, sino que también permite personalizarlo con elementos visuales, enlaces y badges que muestran actividad e información de contacto. Aquí encontrarás un paso a paso para utilizar Markdown y hacer que tu perfil destaque.
-||  
-||  ### Herramientas de apoyo
-||  
-||  [Sintaxis de escritura y formartos basicos](https://docs.github.com/es/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
-||  
-||  [Static Badge](https://docs.github.com/es/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
-||  
-||  ### ¿Cómo iniciar el repositorio especial en GitHub?
-||  
-||  - Crear un repositorio: Ve a la sección de repositorios y crea uno nuevo usando el mismo nombre que tu nombre de usuario en GitHub; esto permite que el repositorio funcione como portada.
-||  
-||  - Descripción y visibilidad: Añade una descripción breve (ej. “Portada de perfil”), hazlo público y agrega un archivo README.md. Esto es esencial para que el contenido sea visible en tu perfil.
-||  
-||  - Clonación del repositorio: Clona el repositorio usando git clone en la terminal. La opción HTTPS es conveniente para nuevos perfiles, aunque SSH es más seguro.
-||  
-||  ### ¿Cómo personalizar el README con Markdown?
-||  
-||  Markdown facilita la creación de secciones y elementos visuales. Puedes agregar:
-||  
-||  - Títulos y subtítulos: Usa #, ## o ### según la jerarquía. Por ejemplo, ## Contacto.
-||  - Enlaces y badges: Incluye enlaces usando [Texto](URL). Para badges, visita shields.io donde encontrarás diferentes opciones (ej. actividad de commits, sitios web).
-||  - Iconos y emojis: Puedes agregar emojis como :computer: o :pencil: para destacar roles o actividades.
-||  
-||  ### ¿Cómo previsualizar y ajustar el archivo en Visual Studio Code?
-||  
-||  - Vista previa de Markdown: Selecciona Open Preview en la esquina superior derecha para ver cómo se verán los cambios en GitHub.
-||  - Extensiones recomendadas: Markdown Lint ayuda a mejorar el estilo al sugerir tips sobre el formato, como evitar espacios en blanco innecesarios.
-||  - Limpieza del código: Markdown Lint también ayuda a mantener el archivo ordenado eliminando líneas en blanco que no son necesarias.
-||  
-||  ### ¿Cómo añadir y ajustar badges en el perfil de GitHub?
-||  
-||  1. Visita shields.io y busca categorías de badges como:
-||      - Website: Permite agregar un enlace a tu sitio web.
-||      - Actividad de Commits: Muestra la frecuencia de tus commits en GitHub. Puedes seleccionar el intervalo: weekly, monthly, yearly, o total.
-||  
-||  2. Insertar badges en Markdown: Selecciona “Markdown” en shields.io para obtener el código y pégalo en el README.md.
-||  3. Prueba de visualización: Asegúrate de que los badges se muestren correctamente en Visual Studio Code.
-||  
-||  ### ¿Qué estrategias aplicar para mejorar la portada en GitHub?
-||  
-||  - Referencias a otros repositorios: Examina perfiles de otros usuarios o proyectos con buena documentación. Visualiza su archivo README.md en modo “RAW” para ver el código en Markdown.
-||  
-||  - Explora y adapta: La práctica es clave; revisa diferentes perfiles para encontrar ideas y técnicas que puedas adaptar.
-||  
 ---
 ---
+
+## 🤝 Forks, Pull Requests y Colaboración en GitHub
+
+![Static Badge](https://img.shields.io/badge/fork-blue?logo=github)
+![Static Badge](https://img.shields.io/badge/pull%20request-green?logo=git)
+![Static Badge](https://img.shields.io/badge/code%20review-orange?logo=githubactions)
+![Static Badge](https://img.shields.io/badge/collaboration-yellow?logo=github)
+
+En GitHub, la colaboración se basa en tres pilares:
+
+1. **Forks** → crear una copia del repositorio original.
+2. **Pull Requests (PR)** → proponer cambios.
+3. **Code Review y Merge** → revisión y fusión del trabajo.
+
+Este flujo permite contribuir sin afectar directamente al repositorio original, manteniendo orden, seguridad y trazabilidad.
+
+---
+
+### 🍴 1️⃣ Fork: copiar un repositorio para colaborar
+
+Un **fork** es una copia completa de otro repositorio, pero dentro de tu cuenta.
+
+📌 **Útil para:**
+
+* Contribuir a proyectos de otros usuarios.
+* Practicar sin modificar el código original.
+* Trabajar con cuentas paralelas (como hicimos con `decktSsail` y `Ssail-1`).
+
+#### 🧩 Cómo crear un fork:
+
+1. En GitHub, abre el repositorio que quieras copiar.
+2. Haz clic en el botón **Fork** (esquina superior derecha).
+3. Elige tu cuenta como destino.
+4. GitHub creará una copia con el mismo nombre y estructura.
+
+💡 En tu caso:
+
+> `Ssail-1/PlatziNotes` → fork → `decktSsail/PlatziNotes`
+
+---
+
+### 🧭 2️⃣ Clonar tu fork localmente
+
+Desde la cuenta donde hiciste el fork (`decktSsail`), clónalo con el alias SSH correspondiente:
+
+```bash
+git clone git@github.com-deckt:decktSsail/PlatziNotes.git
+```
+
+Esto crea una copia local de tu fork.
+
+Luego entra al directorio:
+
+```bash
+cd PlatziNotes
+```
+
+---
+
+### 🔗 3️⃣ Conectar el repositorio original como *upstream*
+
+Agrega el repo original (`Ssail-1`) como remoto “upstream” para mantenerte sincronizado:
+
+```bash
+git remote add upstream git@github.com-ssail:Ssail-1/PlatziNotes.git
+```
+
+💬 Así tendrás:
+
+```
+origin   → tu fork (lectura/escritura)
+upstream → el original (solo lectura)
+```
+
+Puedes confirmar con:
+
+```bash
+git remote -v
+```
+
+---
+
+### 🔄 4️⃣ Mantener sincronizado tu fork
+
+Cada cierto tiempo, trae los cambios del repo original y actualiza tu fork:
+
+```bash
+git fetch upstream
+git pull upstream main
+git push origin main
+```
+
+📌 Esto mantiene tu fork actualizado con la versión más reciente del proyecto principal.
+
+---
+
+### 🧠 5️⃣ Crear una rama de trabajo
+
+Siempre haz tus cambios en una rama nueva, **nunca directamente en `main`**:
+
+```bash
+git switch -c feature/nombre-rama
+```
+
+💡 Ejemplo:
+
+```bash
+git switch -c feature/git-notes-update
+```
+
+Realiza tus ediciones y commits normalmente:
+
+```bash
+git add .
+git commit -m "✨ Actualiza notas de Git y estructura de curso"
+```
+
+Sube la rama a tu fork:
+
+```bash
+git push origin feature/git-notes-update
+```
+
+---
+
+### 🔃 6️⃣ Crear un Pull Request (PR)
+
+Ve a tu fork en GitHub (`decktSsail/PlatziNotes`) y verás un aviso:
+
+> “feature/git-notes-update had recent pushes. Compare & Pull Request.”
+
+1. Haz clic en **Compare & Pull Request**.
+
+2. Asegúrate de que el PR se dirija hacia:
+
+   ```
+   base: Ssail-1/main  ←  head: decktSsail/feature/git-notes-update
+   ```
+
+3. Escribe un título y descripción claros:
+
+   ```
+   ✨ Actualiza documentación de Git Essentials
+   - Crea carpeta Imagenes
+   - Agrega archivo github-essentials-notes.md
+   - Reestructura contenido y créditos
+   ```
+
+4. Envía el Pull Request.
+
+---
+
+### 🧩 7️⃣ Revisión de código (*Code Review*)
+
+El propietario del repositorio (en este caso, `Ssail-1`) puede:
+
+* Revisar los cambios línea por línea.
+* Comentar sugerencias o errores.
+* Solicitar ajustes antes de aprobar.
+
+💬 Es buena práctica contestar los comentarios, aplicar los cambios y subir nuevos commits al mismo PR.
+
+GitHub los añadirá automáticamente a la discusión.
+
+---
+
+### ⚙️ 8️⃣ Fusionar (Merge) el PR
+
+Cuando el PR está aprobado:
+
+1. Haz clic en **Merge Pull Request**.
+2. Elige la opción:
+
+   * **Create a merge commit** → conserva todo el historial.
+   * **Squash and merge** → compacta todos los commits en uno (más limpio).
+3. Confirma el merge.
+
+GitHub integrará los cambios al repositorio original.
+
+---
+
+### 🧹 9️⃣ Limpiar ramas
+
+Después de hacer el merge:
+
+#### En GitHub:
+
+GitHub te ofrecerá borrar la rama remota (`Delete branch`).
+Haz clic ahí para mantener el repos limpio.
+
+#### En local:
+
+```bash
+git switch main
+git pull origin main
+git branch -d feature/git-notes-update
+```
+
+---
+
+### 🧭 Flujo visual completo
+
+```mermaid
+flowchart TD
+  A[Repo Original Ssail-1] -->|Fork| B[Repo Fork decktSsail]
+  B -->|git clone| C[Local VM]
+  C -->|Cambios & commits| D[feature/git-notes-update]
+  D -->|git push origin feature/...| E[GitHub Fork]
+  E -->|Pull Request| A
+  A -->|Merge| F[Repo Principal Actualizado]
+  F -->|git fetch upstream| G[Sincroniza con Fork]
+```
+
+---
+
+### 💡 Buenas prácticas
+
+✅ Usa ramas por funcionalidad: `feature/`, `hotfix/`, `docs/`, etc.
+✅ Escribe mensajes de commit claros y en presente.
+✅ Sincroniza tu fork antes de comenzar una nueva tarea (`fetch upstream`).
+✅ Nunca trabajes directamente en `main`.
+✅ Siempre responde y agradece en los PRs (comunicación profesional).
+
+---
+
+✅ Con este flujo dominas la colaboración en GitHub: **Fork → Branch → PR → Review → Merge**.
+Es la base de cualquier entorno de trabajo en equipo moderno.
+
+---
+
+<p align="center">
+  <a href="#índice">🔝 <b>Volver al Índice</b> 🔝</a>
+</p>
+
+---
+---
+
+## 🧩 Issues y GitHub Projects — Planificación Colaborativa
+
+![Static Badge](https://img.shields.io/badge/github-issues-blue?logo=github)
+![Static Badge](https://img.shields.io/badge/github-projects-green?logo=github)
+![Static Badge](https://img.shields.io/badge/task-management-orange?logo=trello)
+![Static Badge](https://img.shields.io/badge/collaboration-yellow?logo=workflow)
+
+> Los **Issues** son el sistema de registro de tareas, errores o ideas dentro de un repositorio.
+> Los **Projects** son tableros visuales que ayudan a planificar y dar seguimiento a esas tareas.
+> Juntos forman el corazón de la gestión colaborativa en GitHub. 💡
+
+---
+
+### 🧠 1️⃣ Issues — seguimiento de tareas o problemas
+
+Un **Issue** representa una conversación abierta sobre algo que requiere atención:
+puede ser un *bug*, una *nueva funcionalidad*, una *mejora*, o incluso un *recordatorio*.
+
+#### 🧩 Crear un Issue
+
+1. Abre tu repositorio en GitHub.
+2. Haz clic en la pestaña **Issues → New Issue**.
+3. Rellena los campos:
+
+   * **Title:** resumen claro del problema o tarea.
+   * **Description:** pasos para reproducir el error o propuesta de solución.
+4. (Opcional) Asigna etiquetas (**labels**) como:
+
+   * `bug` → errores
+   * `enhancement` → mejoras
+   * `documentation` → tareas de docs
+   * `help wanted` → se necesita ayuda
+
+💬 Ejemplo:
+
+```
+Title: Error al sincronizar rama main
+Description:
+Al hacer git pull origin main, aparece conflicto en README.md.
+Posible causa: cambios simultáneos entre ramas.
+```
+
+---
+
+### ⚙️ 2️⃣ Vincular un Issue con un Pull Request
+
+Cuando trabajes en una rama que solucione un problema, menciona el número del issue en el mensaje del commit o PR:
+
+```bash
+git commit -m "fix: corrige conflicto en README.md (closes #12)"
+```
+
+💡 **`closes #12`** cierra automáticamente el Issue número 12 cuando el PR es fusionado.
+
+O bien, en la descripción del PR puedes poner:
+
+> `Resolves #12` o `Fixes #12`
+
+Esto mantiene la trazabilidad entre el código y la tarea original.
+
+---
+
+### 🧩 3️⃣ Crear plantillas de Issues
+
+GitHub permite crear **plantillas Markdown** para estandarizar la información que los colaboradores llenan.
+
+#### 📁 Estructura
+
+Dentro del repositorio, crea la carpeta:
+
+```
+.github/ISSUE_TEMPLATE/
+```
+
+Y dentro, por ejemplo:
+
+**`bug_report.md`**
+
+```markdown
+---
+name: Reporte de Bug
+about: Describe un problema encontrado
+title: "[BUG] Título corto"
+labels: bug
+---
+
+### Descripción
+Describe brevemente el error.
+
+### Pasos para reproducir
+1. Ir a '...'
+2. Hacer clic en '...'
+
+### Resultado esperado
+Describe qué debería pasar.
+
+### Capturas de pantalla
+Si aplica, agrega imágenes aquí.
+```
+
+**`feature_request.md`**
+
+```markdown
+---
+name: Solicitud de Funcionalidad
+about: Proponer una nueva característica
+title: "[FEATURE] Nueva idea"
+labels: enhancement
+---
+
+### Descripción
+Explica qué problema resolvería o qué mejora agregaría.
+```
+
+💡 Esto mejora la comunicación y profesionaliza el repositorio.
+
+---
+
+### 🗂️ 4️⃣ Projects — planificación visual de trabajo
+
+Los **Projects** son tableros tipo *Kanban* (como Trello), donde puedes organizar Issues y Pull Requests según su estado.
+
+#### 🧭 Crear un Project
+
+1. En el repositorio → pestaña **Projects → New Project**.
+2. Elige el tipo:
+
+   * **Board:** tablero estilo Kanban (*To do / In Progress / Done*).
+   * **Table:** tabla con filtros y campos personalizados.
+3. Nómbralo y añade una descripción (ej. “Desarrollo del curso GitHub Essentials”).
+
+#### 🧩 Agregar tareas al Project
+
+Puedes añadir:
+
+* Issues existentes.
+* Pull Requests abiertos.
+* Notas personalizadas (para ideas o pendientes).
+
+Ejemplo de columnas:
+
+| 🕓 To do     | ⚙️ In progress | ✅ Done              |
+| ------------ | -------------- | ------------------- |
+| Crear README | Documentar PRs | Cerrar curso GitHub |
+
+---
+
+### ⚡ 5️⃣ Automatizaciones
+
+GitHub Projects permite automatizar el movimiento de tareas:
+
+* Cuando un **PR se abre**, pasa a *In Progress*.
+* Cuando un **PR se fusiona o se cierra**, pasa a *Done*.
+* También puedes automatizarlo con **GitHub Actions** (para flujos más avanzados).
+
+💡 Esto ahorra tiempo y mantiene tu tablero siempre actualizado.
+
+---
+
+### 🧩 6️⃣ Flujo visual completo
+
+```mermaid
+flowchart LR
+  A[Idea o Bug] -->|Crear Issue| B[Issue #12]
+  B -->|Asignar a rama| C[feature/fix-bug]
+  C -->|Commits y PR| D[Pull Request #34]
+  D -->|Merge con closes #12| E[Issue cerrado]
+  B -->|Vinculado en Project| F[Project Board]
+  F -->|Automatización| G[Estado actualizado]
+```
+
+---
+
+### 💡 Buenas prácticas
+
+✅ Usa etiquetas consistentes para identificar tipos de tarea.
+✅ Crea plantillas de Issues para mejorar la claridad.
+✅ Vincula Issues y PRs para mantener trazabilidad.
+✅ Cierra Issues solo con commits o merges (no manualmente).
+✅ Revisa tu Project semanalmente para mantener el flujo limpio.
+
+---
+
+✅ Con esto dominamos la **gestión colaborativa completa en GitHub**:
+desde reportar problemas hasta planificar el desarrollo visualmente.
+Es la base para trabajar de forma profesional en equipo o en proyectos open source. 🌍
+
+---
+
+<p align="center">
+  <a href="#índice">🔝 <b>Volver al Índice</b> 🔝</a>
+</p>
+
+---
+---
+
+## 🧰 Recursos esenciales de Markdown para documentación efectiva
+
+![Static Badge](https://img.shields.io/badge/Markdown-Tools-blue?logo=markdown)
+![Static Badge](https://img.shields.io/badge/Documentation-Tips-yellow?logo=book)
+![Static Badge](https://img.shields.io/badge/Productivity-Boost-green?logo=github)
+
+Antes de crear documentación avanzada en GitHub, es fundamental dominar **Markdown**, el lenguaje base que da formato a todos los archivos `.md`.
+Aquí encontrarás una recopilación de herramientas, guías y extensiones que te ayudarán a escribir documentación profesional y visualmente atractiva.
+
+---
+
+### 🛠️ Herramientas útiles para documentación
+
+📘 [**Markdown Cheat Sheet**](https://www.markdownguide.org/cheat-sheet) → Referencia rápida de toda la sintaxis.  
+🎨 [**Simple Icons**](https://simpleicons.org/) → Biblioteca de íconos para badges personalizados.  
+📝 [**Sintaxis básica de escritura en GitHub**](https://docs.github.com/es/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) → Documentación oficial de GitHub.  
+🏷️ [**Static Badge Docs**](https://docs.github.com/es/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) → Guía para crear y personalizar badges.  
+🎥 [**Curso de Markdown en YouTube**](https://www.youtube.com/watch?v=oxaH9CFpeEE "Curso Markdown por Fazt Code")  
+
+---
+
+### 💻 Extensiones para Visual Studio Code
+
+> 🧩 [**markdownlint**](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) → mejora la legibilidad y la consistencia del código Markdown.  
+> 💡 [**Markdown Preview Mermaid Support**](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid) → permite visualizar diagramas `Mermaid` directamente en VS Code.  
+
+💬 *Consejo:*
+Dominar Markdown nos da el control absoluto sobre cómo se ve nuestra documentación, desde el README más simple hasta repositorios técnicos completos como **PlatziNotes**.  
+
+---
+
+<p align="center">
+  <a href="#índice">🔝 <b>Volver al Índice</b> 🔝</a>
+</p>
+
+---
+---
+
+## 🧩 Creación de una Portada de Perfil en GitHub con Markdown
+
+![Static Badge](https://img.shields.io/badge/GitHub-Profile%20README-purple?logo=github)
+![Static Badge](https://img.shields.io/badge/Personal-Branding-pink?logo=github)
+![Static Badge](https://img.shields.io/badge/Markdown-Showcase-blue?logo=markdown)
+
+> “Nuestro perfil de GitHub es la carta de presentación al mundo profesional.”
+
+GitHub permite crear un **repositorio especial** que actúa como portada visible en tu perfil principal.
+Este repositorio es público y contiene un `README.md` personalizado que se muestra automáticamente en tu perfil.
+
+---
+
+### ⚙️ ¿Cómo crear el repositorio especial?
+
+1. Ve a tu cuenta de GitHub → **New Repository**.
+2. En el campo **Repository name**, escribe **exactamente tu nombre de usuario** (respetando mayúsculas y minúsculas).
+
+   * Ejemplo: si tu usuario es `Ssail-1`, el repositorio debe llamarse **Ssail-1**.
+   * Esto le indica a GitHub que el repositorio es *especial* y debe mostrarse en tu perfil.
+3. Activa la opción **“Public”** y marca **“Add a README file”**.
+4. ¡Listo! Tu README ahora será visible en tu perfil principal.
+
+📦 *También puedes hacerlo por terminal:*
+
+```bash
+git init
+git remote add origin git@github.com:Ssail-1/Ssail-1.git
+echo "# Bienvenido a mi perfil 👋" > README.md
+git add README.md
+git commit -m "✨ Crea portada de perfil personalizada"
+git push -u origin main
+```
+
+---
+
+### 🎨 Personalizar el README
+
+Markdown te permite crear una portada con estilo, funcionalidad y personalidad.
+
+Puedes agregar:
+
+* 🧭 **Secciones con títulos claros:** “Sobre mí”, “Habilidades”, “Proyectos recientes”.
+* 🪶 **Enlaces:** `[Texto del enlace](URL)`
+* 🏷️ **Badges personalizados:** creados en [shields.io](https://shields.io/).
+* 🌈 **Emojis:** para darle vida y organización visual a cada apartado.
+
+💡 Inspírate:
+Visita perfiles destacados y revisa su archivo `README.md` en modo **RAW** para ver cómo está escrito el código Markdown.
+
+---
+
+### 🧠 Herramientas de apoyo
+
+📘 [Sintaxis básica de Markdown](https://docs.github.com/es/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)  
+🏷️ [Static Badges](https://shields.io/)  
+🖋️ [Simple Icons](https://simpleicons.org/)  
+
+💬 *Extensiones recomendadas en VS Code:*
+
+* `markdownlint` → limpieza y estilo.
+* `Markdown Preview Mermaid Support` → vista previa avanzada.
+
+---
+
+### 🌟 Buenas prácticas para tu portada
+
+✅ Muestra tu **identidad profesional real**, no solo tus lenguajes.  
+✅ Incluye tu **actividad en GitHub** (con badges de commits o contribuciones).  
+✅ Añade tus **contactos principales** (LinkedIn, correo, portafolio).  
+✅ Evita saturar con texto o imágenes pesadas.  
+✅ Usa íconos y colores coherentes con tu marca personal.  
+
+---
+
+### Ejemplo de estructura visual
+
+```markdown
+# 👋 ¡Hola, soy Luis Isaías (Ssail-1)!
+> Desarrollador en formación | Entusiasta del conocimiento | Creando PlatziNotes 🚀
+
+---
+
+## 🧰 Tecnologías y herramientas
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github)
+
+---
+
+## 🌱 Últimos proyectos
+- 🗂️ [PlatziNotes](https://github.com/Ssail-1/PlatziNotes) → Documentación de aprendizaje técnico.
+- 🧩 [HybridgeNotes](https://github.com/Ssail-1/HybridgeNotes) → Apuntes y proyectos universitarios.
+
+---
+
+## 💬 Conecta conmigo
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/tu-perfil/)
+📫 **Correo:** ssail.vcs.1@gmail.com
+
+---
+
+✅ Con esto podremos **mostrar nuestro portafolio, identidad y progreso real** directamente en nuestro perfil de GitHub.  
+Esta es una herramienta poderosa para tu marca personal y tu carrera como desarrollador. 🌎
+
+```
+
+---
+
+<p align="center">
+  <a href="#índice">🔝 <b>Volver al Índice</b> 🔝</a>
+</p>
+
+---
+---
+
+## 9. Uso de wikis
+
+## 10. Uso de GitHub Gist
+
+> [!IMPORTANT]
+> en proceso...
+>
+
+---
+
+<p align="center">
+  <a href="#índice">🔝 <b>Volver al Índice</b> 🔝</a>
+
+  📘 [Volver al README del Curso](./README.md)  
+  📙 [Ir a Notas de Git](./git-essentials-notes.md)
+
+</p>
+
 ---
 ---
 ---
