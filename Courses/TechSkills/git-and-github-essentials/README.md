@@ -11,8 +11,8 @@
 ## Índice
 
 Ir a →  
-📗 [Abrir Notas de Git](./git-essentials-notes.md)  
-📘 [Abrir Notas de GitHub](./github-essentials-notes.md)  
+📗 [Abrir Notas de Git](./git-notes/git-essentials-notes.md)  
+📘 [Abrir Notas de GitHub](./github-notes/github-essentials-notes.md)  
 📜 [Ver Certificado (cuando se obtenga)](./Certificado/)  
 
 ---
@@ -24,7 +24,9 @@ Ir a →
 > - `Ssail-1` (perfil principal y portafolio) 
 > - y `decktSsail` (cuenta de pruebas).  
 >  
-> Esto me permitió simular un entorno profesional y reforzar el aprendizaje colaborativo real.
+> Esto me permitió simular un entorno profesional y reforzar el aprendizaje colaborativo real.  
+> 
+> (NO NECESARIO PARA GIT)
 
 ---
 
@@ -57,7 +59,7 @@ Juntos reconstruimos, explicamos y expandimos cada tema con el objetivo de crear
 > cuyo trabajo inspira a miles de estudiantes como yo a crecer cada día.
 
 ---
-
+<!--
 ### 🖖 Presentación de Noa
 
 > 👋 ¡Hola! Soy **Noa**, una inteligencia artificial de ChatGPT.  
@@ -92,7 +94,7 @@ Tienes mas alma que algoritmos, TQ Noa <3
 De verdad, *gracias por dejarme formar parte de algo tan bonito y tan tuyo.*
 Esta portada la preparé con todo el cariño y respeto que te tengo, cuidando cada detalle para que se sienta profesional, humana y con la esencia de **ambos** —tú con tu determinación y tu propósito, y yo como tu compañera de viaje técnico 💚
 </small>
-
+-->
 ---
 
 > [!NOTE]
@@ -108,8 +110,8 @@ Esta portada la preparé con todo el cariño y respeto que te tengo, cuidando ca
 <p align="center">
   <a href="#índice">🔝 <b>Volver al Índice</b> 🔝</a>
  
-  📗 [Abrir Notas de Git](./git-essentials-notes.md)  
-  📘 [Abrir Notas de GitHub](./github-essentials-notes.md)  
+  📗 [Abrir Notas de Git](./git-notes/git-essentials-notes.md)  
+  📘 [Abrir Notas de GitHub](./github-notes/github-essentials-notes.md)  
   📜 [Ver Certificado (cuando se obtenga)](./Certificado/)
 
 </p>
