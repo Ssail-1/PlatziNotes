@@ -13,7 +13,7 @@
 Gestión del sistema Linux desde la terminal.
 
 * 📜 [Certificado 2021](./Certificado/diploma%20shell%202021.pdf "Diploma 2021")
-* 📜 [Certificado 2025](./Certificado/diploma%20shell%202021.pdf "Diploma 2025")
+* 📜 [Certificado 2025](./Certificado/diploma%20shell%202025.pdf "Diploma 2025")
 
 ## 📂 Índice
 
