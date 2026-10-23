@@ -19,7 +19,7 @@ Introducción a los fundamentos de Java SE, sintaxis básica y primeros concepto
   <a href="../../../README.md">🔝 Índice principal</a>
 <p>
 
-- [Manual V1.0 Introducción a Java SE](Curso%20de%20Introduccion%20a%20JAVA%20SE.%20v2.pdf "Manual V1.0 Introducción a Java SE")
+- [Manual V1.0 Introducción a Java SE](/Courses/TechSkills/curso-de-introduccion-a-java-se/Curso%20de%20Introduccion%20a%20JAVA%20SE%20v2.pdf "Manual V1.0 Introducción a Java SE")
 
 <p align="center">
   <img src="https://skillicons.dev/icons?i=java" />
