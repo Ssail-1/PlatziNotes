@@ -11,15 +11,15 @@
 
 Aplicación práctica de la programación orientada a objetos utilizando Java SE.
 
-* 📜 [Diploma Java SE POO 2023](diploma-java-se-poo.pdf "Diploma Java SE POO 2023")
+* 📜 [Diploma Java SE POO 2023](/Courses/TechSkills/curso-java-se-poo/diploma-java-se-poo.pdf "Diploma Java SE POO 2023")
 
 ## 📂 Índice
 
 <p align="right">
-  <a href="../../../README.md">🔝 Índice principal</a>
+  <a href="/README.md">🔝 Índice principal</a>
 <p>
 
-- [Manual V1.0 Java SE POO](Java%20SE%20POO.pdf "Manual V1.0 Java SE POO")
+- [Manual V1.0 Java SE POO](/Courses/TechSkills/curso-java-se-poo/Java%20SE%20POO.pdf "Manual V1.0 Java SE POO")
 
 <p align="center">
   <img src="https://skillicons.dev/icons?i=java" />
@@ -28,9 +28,9 @@ Aplicación práctica de la programación orientada a objetos utilizando Java SE
 ---
 
 <p align="center">
-  <a href="../../../README.md"> 🔝 <b>Indice Principal</b> 🔝 </a>
+  <a href="/README.md"> 🔝 <b>Indice Principal</b> 🔝 </a>
 </p>
 
-![Diploma Java SE POO 2023](diploma-java-se-poo.jpg "Diploma Java SE POO 2023")
+![Diploma Java SE POO 2023](/Courses/TechSkills/curso-java-se-poo/diploma-java-se-poo.jpg "Diploma Java SE POO 2023")
 
 ---

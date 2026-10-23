@@ -32,7 +32,10 @@ Documentación y certificados de los cursos de Platzi, incluye notas y projectos
 
 #### 🐍 Python
 
-- [Fundamentos de python](/Courses/TechSkills/fundamentos-de-python/README.md "Curso fundamento de python")
+- [Fundamentos de python](/Courses/TechSkills/python/fundamentos-de-python/README.md "Curso fundamento de python")
+- [Python orientado a objetos](/Courses/TechSkills/python/python-orientado-objetos/README.md)
+
+Puedes encontrar material de un curso de Python más extenso en [CoursesDaltoDevLab](https://github.com/Ssail-1/CoursesDaltoDevLab/blob/main/Python/Curso-python-desde-cero/README.md).
 
 #### ☕ Java
 

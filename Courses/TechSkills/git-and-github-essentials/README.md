@@ -14,9 +14,9 @@ Notas, flujo de trabajo y buenas prácticas para usar **Git** y **GitHub** en pr
 
 ## 📂 Índice
 
-* 📗 [Abrir Notas de Git](./git-notes/git-essentials-notes.md)
-* 📘 [Abrir Notas de GitHub](./github-notes/github-essentials-notes.md)
-* 📜 [Certificado](./Certificado/)
+* 📗 [Abrir Notas de Git](/Courses/TechSkills/git-and-github-essentials/git-notes/git-essentials-notes.md)
+* 📘 [Abrir Notas de GitHub](/Courses/TechSkills/git-and-github-essentials/github-notes/github-essentials-notes.md)
+* 📜 Certificado pendiente de incorporar.
 
 <p align="center">
   <img src="https://skillicons.dev/icons?i=git,github" />
@@ -29,5 +29,5 @@ Se sigue construyendo...
 ---
 
 <p align="center">
-  <a href="../../../README.md">🔝 <b>Indice Principal</b> 🔝</a>
+  <a href="/README.md">🔝 <b>Indice Principal</b> 🔝</a>
 </p>
