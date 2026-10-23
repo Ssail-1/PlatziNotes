@@ -24,6 +24,7 @@
   - [Insertar imagenes](#insertar-imagenes)
     - [Mediante Hipervinculo](#mediante-hipervinculo)
     - [Localmente](#localmente)
+  - [Sensación de bloque independiente](#sensación-de-bloque-independiente)
 
 ## __Titulos #__
 
@@ -229,3 +230,22 @@ console.log('Hello world')
 <p align="right">
   <a href="#indice">- 📝 Indice</a>
 <p>
+
+## Sensación de bloque independiente
+
+```md id="cards-v3"
+## 🎯 Habilidades clave
+
+> 🧠 **Analizar**  
+> Observación · Entendimiento · Lectura  
+
+---
+
+> ✍️ **Plasmar**  
+> Análisis de problemas · Diagramas  
+
+---
+
+> 💻 **Programar**  
+> Lenguajes de programación · Implementación 
+```

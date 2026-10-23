@@ -1,0 +1,98 @@
+{
+    "nombre": "Platzi Biblioteca",
+    "usuarios": [
+        {
+            "tipo_usuario": "Profesor",
+            "datos_usuario": {
+                "name": "Dr. Ana Gómez",
+                "cedula": "1",
+                "libros_prestados": [],
+                "departamento": "Matematicas",
+                "limite_libros": null
+            }
+        },
+        {
+            "tipo_usuario": "Estudiante",
+            "datos_usuario": {
+                "name": "Juan Pérez",
+                "cedula": "2",
+                "libros_prestados": [],
+                "carrera": "Gestion Empresarial",
+                "limite_libros": 3
+            }
+        },
+        {
+            "tipo_usuario": "Estudiante",
+            "datos_usuario": {
+                "name": "Maria Lopez",
+                "cedula": "3",
+                "libros_prestados": [],
+                "carrera": "Ingenieria de Sistemas",
+                "limite_libros": 3
+            }
+        },
+        {
+            "tipo_usuario": "Profesor",
+            "datos_usuario": {
+                "name": "Dr. Carlos Ruiz",
+                "cedula": "4",
+                "libros_prestados": [],
+                "departamento": "Fisica",
+                "limite_libros": null
+            }
+        },
+        {
+            "tipo_usuario": "Estudiante",
+            "datos_usuario": {
+                "name": "Luis Sanchez",
+                "cedula": "5",
+                "libros_prestados": [],
+                "carrera": "Ingeniería de Software",
+                "limite_libros": 3
+            }
+        },
+        {
+            "tipo_usuario": "Profesor",
+            "datos_usuario": {
+                "name": "Isaias Salinas",
+                "cedula": "6",
+                "libros_prestados": [],
+                "departamento": "Informatica",
+                "limite_libros": null
+            }
+        }
+    ],
+    "libros": [
+        {
+            "tipo_libro": "LibroFisico",
+            "datos_libro": {
+                "titulo": "100 años de soledad",
+                "autor": "Gabriel García Márquez",
+                "isbn": "0987654321",
+                "cantidad_disponible": 5,
+                "_Libro__veces_prestado": 0
+            }
+        },
+        {
+            "tipo_libro": "LibroFisico",
+            "datos_libro": {
+                "titulo": "1984",
+                "autor": "George Orwell",
+                "isbn": "1122334455",
+                "cantidad_disponible": 2,
+                "_Libro__veces_prestado": 0
+            }
+        },
+        {
+            "tipo_libro": "LibroDigital",
+            "datos_libro": {
+                "titulo": "El principito",
+                "autor": "Antoine de Saint-Exupéry",
+                "isbn": "5566778899",
+                "cantidad_disponible": 1,
+                "_Libro__veces_prestado": 0
+            }
+        }
+    ],
+    "fecha_guardado": "2026-06-30T02:22:10.089888"
+}

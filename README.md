@@ -22,11 +22,23 @@ Documentación y certificados de los cursos de Platzi, incluye notas y projectos
 
 ## 📂 Índice Principal
 
-🛠️ Tools
+### 🛠️ Tools
 
 - [Linea de comandos (Linux)](/Courses/TechSkills/terminal-linux/README.md "Curso Linea de comandos")
 - [Git & GitHub](/Courses/TechSkills/git-and-github-essentials/README.md "Curso de Git y GitHub")
 - [Markdown](/Courses/TechSkills/Markdown/README.md (Curso de Markdown))
+
+### 📎 Lenguajes
+
+#### 🐍 Python
+
+- [Fundamentos de python](/Courses/TechSkills/fundamentos-de-python/README.md "Curso fundamento de python")
+
+#### ☕ Java
+
+- [Introducción a Java SE](/Courses/TechSkills/curso-de-introduccion-a-java-se/README.md)
+- [Teoria POO](/Courses/TechSkills/curso-teorico-de-poo/README.md)
+- [Java SE Orientado a Objetos](/Courses/TechSkills/curso-java-se-poo/README.md)
 
 ---
 
