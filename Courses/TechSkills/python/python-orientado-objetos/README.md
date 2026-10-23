@@ -64,8 +64,8 @@ Aunque implementa diferentes funcionalidades, todavía puede mejorarse mediante 
 
 Proyecto desarrollado a partir de los conocimientos adquiridos durante mi formación en Python y programación orientada a objetos.
 
-📜 [Consultar certificado](certificado-7907baab-1bce-477f-ac59-82b3b6d8a26c-9d2951de-ae97-4844-a29b-d07f00e7b85e.pdf)
+📜 [Consultar certificado](/Courses/TechSkills/python/python-orientado-objetos/certificado-7907baab-1bce-477f-ac59-82b3b6d8a26c-9d2951de-ae97-4844-a29b-d07f00e7b85e.pdf)
 
 ---
 
-[⬆️ Volver al índice principal de PlatziNotes](../../../../README.md)
+[⬆️ Volver al índice principal de PlatziNotes](/README.md)

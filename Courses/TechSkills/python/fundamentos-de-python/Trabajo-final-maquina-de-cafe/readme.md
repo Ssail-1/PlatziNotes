@@ -33,4 +33,4 @@ Este proyecto fue desarrollado con fines educativos. Su propósito es demostrar 
 
 ---
 
-[⬅️ Volver a Fundamentos de Python](../README.md)
+[⬅️ Volver a Fundamentos de Python](/Courses/TechSkills/python/fundamentos-de-python/README.md)

@@ -14,9 +14,9 @@ Este curso contiene mis apuntes estructurados sobre **Markdown** y uso en **GitH
 
 ## 📂 Índice
 
-* [📖 Guía rápida Markdown](Guia-rapida-markdown.md)
-* [⚡ Markdown para GitHub](Markdown-para-GitHub.md)
-* [🎨 Recursos visuales para README](Recursos-Visuales.md)
+* [📖 Guía rápida Markdown](/Courses/TechSkills/Markdown/Guia-rapida-markdown.md)
+* [⚡ Markdown para GitHub](/Courses/TechSkills/Markdown/Markdown-para-GitHub.md)
+* [🎨 Recursos visuales para README](/Courses/TechSkills/Markdown/Recursos-Visuales.md)
 
 <p align="center">
   <img src="https://skillicons.dev/icons?i=markdown,github,vscode" />
@@ -29,5 +29,5 @@ Se sigue contruyendo...
 ---
 
 <p align="center">
-  <a href="../../../README.md">🔝 <b>Indice Principal</b> 🔝</a>
+  <a href="/README.md">🔝 <b>Indice Principal</b> 🔝</a>
 </p>

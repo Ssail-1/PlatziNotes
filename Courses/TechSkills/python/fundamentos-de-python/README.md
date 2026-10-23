@@ -18,15 +18,15 @@ También cuento con apuntes más extensos de Python en mi repositorio [CoursesDa
 
 | Tema | Material |
 |---|---|
-| Conversión a booleanos | [Código Python](1-Clase-datos-bool.py) |
-| Módulo `random` | [Código Python](2-Clase-random.py) |
-| Operador Walrus `:=` | [Código Python](3-Operador-Warlus.py) |
-| Sentencia `match` | [Apuntes](4-Sentencia_Match.md) |
-| Patrones avanzados de `match` | [Apuntes](4.1-Patrones-avanzados-match.md) |
-| Patrones útiles de `match` | [Apuntes](4.2-Patrones-utiles-de-match.md) |
-| `match` vs. diccionarios de funciones | [Apuntes](4.3-Match-vs-diccionario-de-funciones.md) |
-| Manejo de errores y excepciones | [Código Python](5-Manejo-de-errores.py) |
-| Lectura y escritura de archivos | [Código Python](6-Lectura-escritura-de-archivos.py) |
+| Conversión a booleanos | [Código Python](/Courses/TechSkills/python/fundamentos-de-python/1-Clase-datos-bool.py) |
+| Módulo `random` | [Código Python](/Courses/TechSkills/python/fundamentos-de-python/2-Clase-random.py) |
+| Operador Walrus `:=` | [Código Python](/Courses/TechSkills/python/fundamentos-de-python/3-Operador-Warlus.py) |
+| Sentencia `match` | [Apuntes](/Courses/TechSkills/python/fundamentos-de-python/4-Sentencia_Match.md) |
+| Patrones avanzados de `match` | [Apuntes](/Courses/TechSkills/python/fundamentos-de-python/4.1-Patrones-avanzados-match.md) |
+| Patrones útiles de `match` | [Apuntes](/Courses/TechSkills/python/fundamentos-de-python/4.2-Patrones-utiles-de-match.md) |
+| `match` vs. diccionarios de funciones | [Apuntes](/Courses/TechSkills/python/fundamentos-de-python/4.3-Match-vs-diccionario-de-funciones.md) |
+| Manejo de errores y excepciones | [Código Python](/Courses/TechSkills/python/fundamentos-de-python/5-Manejo-de-errores.py) |
+| Lectura y escritura de archivos | [Código Python](/Courses/TechSkills/python/fundamentos-de-python/6-Lectura-escritura-de-archivos.py) |
 
 ## ☕ Práctica final: Máquina de café
 
@@ -34,7 +34,7 @@ Como ejercicio de aplicación, desarrollé un pequeño programa de consola que s
 
 El proyecto está organizado en distintos módulos para practicar la separación de responsabilidades, el procesamiento de pedidos y el manejo de un historial.
 
-**Explorar el proyecto:** [Máquina de café](Trabajo-final-maquina-de-cafe/README.md)
+**Explorar el proyecto:** [Máquina de café](/Courses/TechSkills/python/fundamentos-de-python/Trabajo-final-maquina-de-cafe/readme.md)
 
 ### Cómo ejecutar la práctica
 
@@ -48,12 +48,12 @@ Con Python 3 instalado, desde la raíz del repositorio:
 
 Curso realizado en Platzi durante 2026.
 
-📜 [Consultar certificado](diploma-fundamentos-python.pdf)
+📜 [Consultar certificado](/Courses/TechSkills/python/fundamentos-de-python/diploma-fundamentos-python.pdf)
 
-![Certificado de Fundamentos de Python](diploma_fundamentos_de_python.jpg)
+![Certificado de Fundamentos de Python](/Courses/TechSkills/python/fundamentos-de-python/diploma_fundamentos_de_python.jpg)
 
 ---
 
 **Créditos:** Apuntes, ejercicios y práctica elaborados como parte de mi formación personal, tomando como referencia el curso de [Platzi](https://platzi.com/).
 
-[⬆️ Volver al índice principal de PlatziNotes](../../../../README.md)
+[⬆️ Volver al índice principal de PlatziNotes](/README.md)

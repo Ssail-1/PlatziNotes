@@ -11,15 +11,15 @@
 
 Curso enfocado en los principios fundamentales de la programación orientada a objetos.
 
-* 📜 [Certificado 2022](diploma-programacion-orientado-a-objetos.pdf "Diploma 2022")
+* 📜 [Certificado 2022](/Courses/TechSkills/curso-teorico-de-poo/diploma-programacion-orientado-a-objetos.pdf "Diploma 2022")
 
 ## 📂 Índice
 
 <p align="right">
-  <a href="../../../README.md">🔝 Índice principal</a>
+  <a href="/README.md">🔝 Índice principal</a>
 <p>
 
-- [Manual V1.0 Curso teórico de POO](Teoria%20POO.pdf "Manual V1.0 Curso teórico de POO")
+- [Manual V1.0 Curso teórico de POO](/Courses/TechSkills/curso-teorico-de-poo/Teoria%20POO.pdf "Manual V1.0 Curso teórico de POO")
 
 <p align="center">
   <img src="https://skillicons.dev/icons?i=java" />
@@ -28,9 +28,9 @@ Curso enfocado en los principios fundamentales de la programación orientada a o
 ---
 
 <p align="center">
-  <a href="../../../README.md"> 🔝 <b>Indice Principal</b> 🔝 </a>
+  <a href="/README.md"> 🔝 <b>Indice Principal</b> 🔝 </a>
 </p>
 
-![Diploma Curso de POO](diploma-programacion-orientado-a-objetos.jpg "Diploma Curso de POO")
+![Diploma Curso de POO](/Courses/TechSkills/curso-teorico-de-poo/diploma-programacion-orientado-a-objetos.jpg "Diploma Curso de POO")
 
 ---
